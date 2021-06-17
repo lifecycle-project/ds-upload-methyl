@@ -21,7 +21,7 @@ du.dict.download <- function(dict_name, dict_version, dict_kind) {
   } else {
     api_url <- paste0(
       ds_upload.globals$api_dict_released_url, "dictionaries/",
-      dict_kind, "/", dict_version, "?ref=", dict_version
+      dict_kind, "/", dict_version, "?ref=", dict_kind, "-", dict_version
     )
   }
 
@@ -59,7 +59,7 @@ du.dict.retrieve.tables <- function(api_url, dict_name, dict_version, data_versi
 
   if (!missing(dict_version) && !missing(data_version)) {
     message(" * Check released dictionaries")
-    api_url_path <- paste0(api_url, "dictionaries/", dict_name, "/", dict_version, "?ref=", dict_version)
+    api_url_path <- paste0(api_url, "dictionaries/", dict_name, "/", dict_version, "?ref=", dict_name, "-", dict_version)
     beta <- FALSE
   }
 

@@ -40,10 +40,10 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
     {
       workdirs <- du.create.temp.workdir()
       du.check.action(action)
-      du.dict.download(dict_version = dict_version, dict_kind = du.enum.dict.kind()$OUTCOME)
+      du.dict.download(dict_version = dict_version, dict_kind = du.enum.dict.kind()$METHYL)
 
       if (action == du.enum.action()$ALL | action == du.enum.action()$POPULATE) {
-        project <- du.populate(dict_version = dict_version, cohort_id = cohort_id, data_version = data_version, database_name, dict_kind = du.enum.dict.kind()$OUTCOME)
+        project <- du.populate(dict_version = dict_version, cohort_id = cohort_id, data_version = data_version, database_name, dict_kind = du.enum.dict.kind()$METHYL)
       }
       
       if (action == du.enum.action()$ALL) {
@@ -70,11 +70,11 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         if (upload) {
           if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
             du.login(ds_upload.globals$login_data)
-            du.opal.upload(du.enum.dict.kind()$OUTCOME, file_name_yearly)
-            du.opal.upload(du.enum.dict.kind()$OUTCOME, file_name_nonrep)
+            du.opal.upload(du.enum.dict.kind()$METHYL, file_name_yearly)
+            du.opal.upload(du.enum.dict.kind()$METHYL, file_name_nonrep)
           } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
-            du.armadillo.import(project = project, data = methyl_yearly_rep, dict_kind = du.enum.dict.kind()$OUTCOME, table_type = data_version)
-            du.armadillo.import(project = project, data = methyl_non_rep, dict_kind = du.enum.dict.kind()$OUTCOME, table_type = data_version)
+            du.armadillo.import(project = project, data = methyl_yearly_rep, dict_kind = du.enum.dict.kind()$METHYL, table_type = data_version)
+            du.armadillo.import(project = project, data = methyl_non_rep, dict_kind = du.enum.dict.kind()$METHYL, table_type = data_version)
           }
         }
       }
