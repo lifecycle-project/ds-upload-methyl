@@ -57,7 +57,7 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         } else if (missing(covariate_data_input_path)) {
           stop("No source file for covariate data specified, please specify your source for covariate data file")
         }
-        if (missing(cohort_id) & run_mode != du.enum.run.mode()$NON_INTERACTIVE) {
+        if (missing(cohort_id)) {
           cohort_id <- readline("- Specify cohort identifier (e.g. dnbc): ")
         }
         data_input_format <- data_format

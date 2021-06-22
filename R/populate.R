@@ -35,32 +35,3 @@ du.populate <- local(function(dict_version, cohort_id, data_version, database_na
   message("  Importing data dictionaries has finished            ")
   message("######################################################")
 })
-
-#' Create tables in Opal to import the data for the beta dictionaries
-#'
-#' @param dict_name dictionary path to search on
-#' @param database_name name of the database in Opal
-#'
-#' @importFrom stringr str_replace_all
-#'
-#' @return project id to use in central quality control
-#'
-#' @noRd
-du.populate.beta <- function(dict_name, database_name, data_version) {
-  project <- paste0("lc_", du.enum.dict.kind()$BETA, "_", dict_name)
-
-  dictionaries <- du.dict.retrieve.tables(api_url = ds_upload.globals$api_dict_beta_url, dict_name = dict_name, data_version = data_version)
-
-  if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
-    project <- str_replace_all(dict_name, "-", "")
-    project <- str_replace_all(dict_name, "_", "")
-    du.armadillo.create.project(project)
-  }
-
-  if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
-    du.opal.project.create(project, database_name)
-    du.opal.dict.import(project, dictionaries, du.enum.dict.kind()$BETA)
-  }
-
-  return(project)
-}

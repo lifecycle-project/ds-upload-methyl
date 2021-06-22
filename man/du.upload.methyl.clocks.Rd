@@ -42,7 +42,7 @@ Uploading methylation data to the DataSHIELD backends
 
 \dontrun{
 du.upload.methyl.clocks(
-  cohort_id,
+  cohort_id = 'gecko',
   methyl_data_input_path = "~/path-to-file",
   covariate_data_input_path = "~/path-to-file",
   dict_version = "2_2",
