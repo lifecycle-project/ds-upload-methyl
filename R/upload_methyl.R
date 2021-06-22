@@ -28,7 +28,7 @@ ds_upload.globals <- new.env()
 #' }
 #'
 #' @export
-du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '2_2', data_version = "1_0", data_format = du.enum.input.format()$CSV, database_name = "opal_data") {
+du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '1_0', data_version = "1_0", data_format = du.enum.input.format()$CSV, database_name = "opal_data") {
   du.check.package.version()
   du.check.session(upload)
 
@@ -63,21 +63,25 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         data_input_format <- data_format
 
         methyl_yearly_rep <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path)
-        methyl_non_rep <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, type = 'nonrep')
-
-        file_name_yearly <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_yearly_rep_", data_version)
-        file_name_nonrep <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_non_rep_", data_version)
-        write_csv(file_name_yearly, paste0(getwd(), "/", file_name_yearly, ".csv"), na = "")
-        write_csv(file_name_nonrep, paste0(getwd(), "/", file_name_nonrep, ".csv"), na = "")
-
         if (upload) {
           if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
             du.login(ds_upload.globals$login_data)
+            file_name_yearly <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_yearly_rep_", data_version)
+            write_csv(file_name_yearly, paste0(getwd(), "/", file_name_yearly, ".csv"), na = "")
             du.opal.upload(du.enum.dict.kind()$METHYL, file_name_yearly)
+          } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
+            du.armadillo.import(project = project, data = methyl_yearly_rep, dict_version = dict_version, dict_kind = du.enum.dict.kind()$METHYL, data_version = data_version, table_type = "yearly_rep")
+          }
+        }
+        methyl_non_rep <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, type = 'nonrep')
+        if (upload) {
+          if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
+            du.login(ds_upload.globals$login_data)
+            file_name_nonrep <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_non_rep_", data_version)
+            write_csv(file_name_nonrep, paste0(getwd(), "/", file_name_nonrep, ".csv"), na = "")
             du.opal.upload(du.enum.dict.kind()$METHYL, file_name_nonrep)
           } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
-            du.armadillo.import(project = project, data = methyl_yearly_rep, dict_kind = du.enum.dict.kind()$METHYL, table_type = data_version)
-            du.armadillo.import(project = project, data = methyl_non_rep, dict_kind = du.enum.dict.kind()$METHYL, table_type = data_version)
+            du.armadillo.import(project = project, data = methyl_non_rep, dict_version = dict_version, dict_kind = du.enum.dict.kind()$METHYL, data_version = data_version, table_type = "non_rep")
           }
         }
       }

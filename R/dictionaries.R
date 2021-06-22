@@ -24,8 +24,6 @@ du.dict.download <- function(dict_name, dict_version, dict_kind) {
       dict_kind, "/", dict_version, "?ref=", dict_kind, "-", dict_version
     )
   }
-  
-  print(api_url)
 
   dictionaries <- du.get.response.as.dataframe(api_url)
 
