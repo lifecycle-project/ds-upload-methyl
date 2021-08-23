@@ -1,0 +1,12 @@
+^\.ci$
+^\.git$
+^.*\.Rproj$
+^\.Rproj\.user$
+^TROUBLESHOOTING\.md$
+^\.travis\.yml$
+^_pkgdown\.yml$
+^\.Rbuildignore$
+^inst/examples$
+^docs$
+^pkgdown$
+^\.gitignore$

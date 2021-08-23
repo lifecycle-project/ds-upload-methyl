@@ -1,0 +1,43 @@
+Package: dsUploadMethyl
+Title: Upload Functions for DataSHIELD to work with methylation data
+Version: 1.0.0
+Authors@R: 
+  c(person(given = "Sido",
+      family = "Haakma",
+      role = c("aut", "cre"),
+      email = "s.haakma@rug.nl",
+      comment = c(ORCID = "0000-0003-1278-9144")))
+Maintainer: Sido Haakma <s.haakma@rug.nl>
+Description: We use the [methylclock](https://github.com/isglobal-brge/methylclock) package to generate the tabular methylation clocks. Which allows us to upload it to the DataSHIELD backends. 
+             You can start with uploading the data. The raw data is processed by the `ds-upload` package and the autmatically uploaded to the DataSHIELD backend.
+URL: https://github.com/lifecycle-project/ds-upload-methyl
+BugReports: https://github.com/lifecycle-project/ds-upload-methyl/issues
+Depends: 
+  R (>= 3.6)
+Imports:
+  dplyr (>= 1.0.2),
+  opalr (>= 1.2.0),
+  MolgenisArmadillo (>= 0.2.0),
+  httr,
+  RCurl,
+  jsonlite,
+  purrr,
+  readr,
+  stats,
+  readxl,
+  rlang,
+  stringr,
+  utils,
+  tibble,
+  fs
+Suggests:
+  knitr, 
+  rmarkdown,
+  testthat,
+  methylclock (>= 0.7.0)
+biocViews:
+VignetteBuilder: knitr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
