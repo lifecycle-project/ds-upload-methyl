@@ -1,4 +1,4 @@
-Package: dsUpload
+Package: dsUploadMethyl
 Title: Upload Functions for DataSHIELD Backends
 Version: 4.3.0
 Authors@R: 
@@ -46,6 +46,7 @@ Imports:
   maditr,
   haven,
   httr,
+  RCurl,
   jsonlite,
   purrr,
   readr,
@@ -57,18 +58,12 @@ Imports:
   utils,
   tibble,
   fs
-Suggests: 
-  DSI (>= 1.0.0),
-  DSOpal (>= 1.0.0),
-  DSMolgenisArmadillo (>= 1.2.0),
-  dsBaseClient (>= 6.0.1),
-  dsHelper,
+Suggests:
   knitr, 
   rmarkdown,
-  testthat
-Additional_repositories:
-  https://registry.molgenis.org/repository/R
-  https://cran.obiba.org
+  testthat,
+  methylclock (>= 0.7.0)
+biocViews:
 VignetteBuilder: knitr
 License: GPL-3
 Encoding: UTF-8

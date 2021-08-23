@@ -3,3 +3,4 @@ knitr::knit("vignettes/betaDictionaries.Rmd.orig", output = "vignettes/betaDicti
 knitr::knit("vignettes/dataVersioning.Rmd.orig", output = "vignettes/dataVersioning.Rmd")
 knitr::knit("vignettes/dictionaryVersioning.Rmd.orig", output = "vignettes/dictionaryVersioning.Rmd")
 knitr::knit("vignettes/qualityControl.Rmd.orig", output = "vignettes/qualityControl.Rmd")
+knitr::knit("vignettes/nonTabularData.Rmd.orig", output = "vignettes/nonTabularData.Rmd")

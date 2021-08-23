@@ -14,7 +14,7 @@ du.enum.cohorts <- function() {
 #'
 #' @noRd
 du.enum.table.types <- function() {
-  list(NONREP = "non_rep", MONTHLY = "monthly_rep", YEARLY = "yearly_rep", WEEKLY = "weekly_rep", TRIMESTER = "trimester", ALL = "all")
+  list(NONREP = "non_rep", MONTHLY = "monthly_rep", YEARLY = "yearly_rep", WEEKLY = "weekly_rep", TRIMESTER = "trimester", METHYL = "methyl", ALL = "all")
 }
 
 #' Supported input formats
@@ -35,7 +35,7 @@ du.enum.action <- function() {
 #'
 #' @noRd
 du.enum.dict.kind <- function() {
-  list(CORE = "core", OUTCOME = "outcome", BETA = "beta")
+  list(CORE = "core", OUTCOME = "outcome", BETA = "beta", METHYL = "methyl")
 }
 
 #' Projects that are containing dictionaries. Repositories containing these dictionaries should be:
