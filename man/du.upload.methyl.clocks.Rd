@@ -13,6 +13,9 @@ du.upload.methyl.clocks(
   dict_version = "1_0",
   data_version = "1_0",
   data_format = du.enum.input.format()$CSV,
+  dna_source = du.enum.dna.source()$CORD_BLOOD,
+  norm_method = du.enum.norm.method()$RAW,
+  run_mode = du.enum.run.mode()$NORMAL,
   database_name = "opal_data"
 )
 }
@@ -29,9 +32,15 @@ du.upload.methyl.clocks(
 
 \item{dict_version}{version of the dictionary}
 
-\item{data_version}{version of the raw data}
+\item{data_version}{is the mean age (this needs to be a number)}
 
 \item{data_format}{can be CSV or RData}
+
+\item{dna_source}{can be 'cord_blood', 'peripheral_blood' or 'placenta'}
+
+\item{norm_method}{can be RAW=0, BMIQ=1, DASEN=2, SWAN=3, SQN=4, RCP=5, NOOB=6, CPACOR=7, FUNNORM=8, OTHER=9 (needs to be a number)}
+
+\item{run_mode}{can be NORMAL, NON_INTERACTIVE or TEST}
 
 \item{database_name}{is the name of the data backend of DataSHIELD, default = opal_data}
 }
@@ -45,8 +54,10 @@ du.upload.methyl.clocks(
   cohort_id = 'gecko',
   methyl_data_input_path = "~/path-to-file",
   covariate_data_input_path = "~/path-to-file",
+  dna_source = 'placenta',
+  norm_method = 0,
   dict_version = "2_2",
-  data_version = "1_0"
+  data_version = "1"
 )
 }
 

@@ -1,6 +1,6 @@
 Package: dsUploadMethyl
 Title: Upload Functions for DataSHIELD to work with methylation data
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
   c(person(given = "Sido",
       family = "Haakma",
@@ -34,7 +34,7 @@ Suggests:
   knitr, 
   rmarkdown,
   testthat,
-  methylclock (>= 0.7.0)
+  methylclock (>= 0.7.7)
 biocViews:
 VignetteBuilder: knitr
 License: GPL-3

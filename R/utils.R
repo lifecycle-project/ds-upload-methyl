@@ -50,7 +50,7 @@ du.summarize <- local(function(df, .var) {
 #'
 #' @noRd
 du.check.version <- local(function(version) {
-  return(str_detect(version, "\\d+\\_\\d+"))
+  return(str_detect(version, "\\d+"))
 })
 
 #'
@@ -76,7 +76,7 @@ du.get.response.as.dataframe <- local(function(url) {
 #'
 #' @noRd
 du.check.action <- function(action = "all") {
-  if (!(action %in% c("all", "reshape", "populate"))) {
+  if (!(action %in% du.enum.action())) {
     stop("Unknown action type, please fill in 'populate', 'reshape' or 'all'")
   }
 }

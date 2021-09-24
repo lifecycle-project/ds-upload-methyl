@@ -57,8 +57,10 @@ du.upload.methyl.clocks(
   dict_name = "methylclocks", 
   methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/MethylationDataExample55.csv?raw=true",
   covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  dna_source = 'placenta',
+  norm_method = 0,
   dict_version = "1_0",
-  data_version = "1_0")
+  data_version = "1")
 ```
 
 ### Upload to Opal
@@ -92,8 +94,10 @@ du.upload.methyl.clocks(
   dict_name = "methylclocks",
   methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/MethylationDataExample55.csv?raw=true",
   covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  dna_source = 'placenta',
+  norm_method = 0,
   dict_version = "1_0"
-  data_version = "1_0")
+  data_version = "1")
 ```
 
 ## Troubleshooting

@@ -76,16 +76,15 @@ du.armadillo.create.project <- function(project) {
 #'
 #' @param data data to upload
 #' @param dict_version data model version
-#' @param dict_kind data model version
-#' @param data_version data model version
-#' @param table_type data model version
+#' @param data_version mean age
+#' @param dna_source data model version
 #'
 #' @importFrom MolgenisArmadillo armadillo.upload_table
 #' @importFrom stringr str_split str_replace_all str_detect
 #' @importFrom utils tail
 #'
 #' @noRd
-du.armadillo.import <- function(project, data, dict_version, dict_kind, data_version, table_type) {
+du.armadillo.import <- function(project, data, dict_version, data_version, dna_source) {
   requireNamespace("MolgenisArmadillo")
   MolgenisArmadillo::armadillo.assume_role_with_web_identity(
     token = as.character(ds_upload.globals$login_data$token),
@@ -100,18 +99,13 @@ du.armadillo.import <- function(project, data, dict_version, dict_kind, data_ver
       armadillo_project <- project
     }
 
-    if (dict_kind == du.enum.dict.kind()$BETA) {
-      armadillo_project <- str_replace_all(sapply(project_elements, tail, 1), "-", "")
-      armadillo_folder <- du.enum.dict.kind()$BETA
-    } else {
-      armadillo_folder <- paste0(dict_version, "_", dict_kind, "_", data_version)
-    }
+    armadillo_folder <- paste0(dict_version, "_", du.enum.dict.kind()$METHYL, "_", data_version)
 
     message(paste0("* Start importing: ", armadillo_folder, " into project: ", armadillo_project))
-    armadillo.upload_table(project = armadillo_project, folder = armadillo_folder, table = data, name = table_type)
+    armadillo.upload_table(project = armadillo_project, folder = armadillo_folder, table = data, name = dna_source)
     message(paste0("* Import finished successfully"))
   }
   else {
-    message(paste0("  No data available for: ", table_type))
+    message(paste0("  No data available for: ", dna_source))
   }
 }

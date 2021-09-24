@@ -61,3 +61,13 @@ du.enum.backends <- function() {
 du.enum.run.mode <- function() {
   list(NORMAL = "normal", NON_INTERACTIVE = "non_interactive", TEST = "test")
 }
+
+du.enum.dna.source <- function() {
+  list(CORD_BLOOD = "cord_blood", PERIPHERLA_BLOOD = "peripheral_blood", PLACENTA="placenta")
+}
+
+du.enum.norm.method <- function() {
+  list(RAW=0, BMIQ=1, DASEN=2, SWAN=3, SQN=4, RCP=5, NOOB=6, CPACOR=7, FUNNORM=8, OTHER=9)
+}
+
+
