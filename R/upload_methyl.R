@@ -33,7 +33,7 @@ ds_upload.globals <- new.env()
 #' }
 #'
 #' @export
-du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '1_0', data_version = "1_0", data_format = du.enum.input.format()$CSV, dna_source = du.enum.dna.source()$CORD_BLOOD, norm_method = du.enum.norm.method()$RAW, run_mode = du.enum.run.mode()$NORMAL, database_name = "opal_data") {
+du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '1_1', data_version = "16", data_format = du.enum.input.format()$CSV, dna_source = du.enum.dna.source()$CORD_BLOOD, norm_method = du.enum.norm.method()$RAW, run_mode = du.enum.run.mode()$NORMAL, database_name = "opal_data") {
   du.check.package.version()
   du.check.session(upload)
 
