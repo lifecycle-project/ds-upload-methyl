@@ -82,26 +82,15 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         
         data_input_format <- data_format
 
-        methyl_yearly_rep <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, dna_source = dna_source)
+        methyl_data <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, dna_source = dna_source, norm_method = norm_method)
         if (upload) {
           if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
             du.login(ds_upload.globals$login_data)
-            file_name_yearly <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_yearly_rep_", data_version, "_", dna_source)
-            write_csv(file_name_yearly, paste0(getwd(), "/", file_name_yearly, ".csv"), na = "")
-            du.opal.upload(du.enum.dict.kind()$METHYL, file_name_yearly)
+            file_name <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_", dna_source, "_", data_version, "_", dna_source)
+            write_csv(file_name, paste0(getwd(), "/", file_name, ".csv"), na = "")
+            du.opal.upload(du.enum.dict.kind()$METHYL, file_name)
           } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
-            du.armadillo.import(project = project, data = methyl_yearly_rep, dict_version = dict_version, data_version = data_version, dna_source = dna_source)
-          }
-        }
-        methyl_non_rep <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, dna_source = dna_source)
-        if (upload) {
-          if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
-            du.login(ds_upload.globals$login_data)
-            file_name_nonrep <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_non_rep_", data_version, "_", dna_source)
-            write_csv(file_name_nonrep, paste0(getwd(), "/", file_name_nonrep, ".csv"), na = "")
-            du.opal.upload(du.enum.dict.kind()$METHYL, file_name_nonrep)
-          } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
-            du.armadillo.import(project = project, data = methyl_non_rep, dict_version = dict_version, data_version = data_version, dna_source = dna_source)
+            du.armadillo.import(project = project, data = methyl_data, dict_version = dict_version, data_version = data_version, dna_source = dna_source)
           }
         }
       }
@@ -148,10 +137,10 @@ du.generate.methyl.data <- function(data_format, methyl_data_input_path, covaria
   age <- covariate_data$Age
 
   if(dna_source == du.enum.dna.source()$CORD_BLOOD | dna_source == du.enum.dna.source()$PLACENTA) {
-    message("* Generate: DNA methylation age")
+    message(paste0("* Generate: DNA methylation age: [ ", dna_source, " ]"))
     data <- methylclock::DNAmGA(x = methyl_data, age = age)
   } else {
-    message("* Generate: DNA methylation gestational age")
+    message(paste0("* Generate: DNA methylation gestational age: [ ", dna_source, " ]"))
     data <- methylclock::DNAmAge(x = methyl_data, age = age)
   }
 
