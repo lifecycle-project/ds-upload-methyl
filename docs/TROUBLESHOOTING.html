@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dsUploadMethyl</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -286,6 +286,16 @@ builder.append(server = "https://opal.cohort-example.org")</code></pre>
 <p>Example:</p>
 <pre><code>du.upload(database_name = "example_database_name", .....)</code></pre>
 <p>You can check the database name in the “Administration”-tab and then “Databases”. The second database has a name that you need to specify.</p>
+</div>
+<div id="rcpp-package-is-not-installed-correctly" class="section level4">
+<h4 class="hasAnchor">
+<a href="#rcpp-package-is-not-installed-correctly" class="anchor"></a>Rcpp package is not installed correctly</h4>
+<p>If you receive the error below you need to reinstall the Rcpp package.</p>
+<pre><code>Error in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
+  function 'Rcpp_precious_remove' not provided by package 'Rcpp'</code></pre>
+<p>Reinstalling can be done using the following code:</p>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("Rcpp")
+library(Rcpp)</a></code></pre>
 </div>
 </div>
 </div>

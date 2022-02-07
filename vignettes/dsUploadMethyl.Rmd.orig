@@ -55,8 +55,8 @@ Upload the data to Armadillo
 ```{r, upload the methylclocks, eval=FALSE}
 du.upload.methyl.clocks(
   dict_name = "methylclocks", 
-  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/MethylationDataExample55.csv?raw=true",
-  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
+  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "1_0",

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dsUploadMethyl</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -141,9 +141,12 @@
   action <span class='op'>=</span> <span class='fu'>du.enum.action</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>ALL</span>,
   methyl_data_input_path <span class='op'>=</span> <span class='st'>""</span>,
   covariate_data_input_path <span class='op'>=</span> <span class='st'>""</span>,
-  dict_version <span class='op'>=</span> <span class='st'>"1_0"</span>,
-  data_version <span class='op'>=</span> <span class='st'>"1_0"</span>,
+  dict_version <span class='op'>=</span> <span class='st'>"1_1"</span>,
+  data_version <span class='op'>=</span> <span class='st'>"16"</span>,
   data_format <span class='op'>=</span> <span class='fu'>du.enum.input.format</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>CSV</span>,
+  dna_source <span class='op'>=</span> <span class='fu'>du.enum.dna.source</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>CORD_BLOOD</span>,
+  norm_method <span class='op'>=</span> <span class='fu'>du.enum.norm.method</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>RAW</span>,
+  run_mode <span class='op'>=</span> <span class='fu'>du.enum.run.mode</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>NORMAL</span>,
   database_name <span class='op'>=</span> <span class='st'>"opal_data"</span>
 <span class='op'>)</span></pre>
 
@@ -176,11 +179,23 @@
     </tr>
     <tr>
       <th>data_version</th>
-      <td><p>version of the raw data</p></td>
+      <td><p>is the mean age (this needs to be a number)</p></td>
     </tr>
     <tr>
       <th>data_format</th>
       <td><p>can be CSV or RData</p></td>
+    </tr>
+    <tr>
+      <th>dna_source</th>
+      <td><p>can be 'cord_blood', 'peripheral_blood' or 'placenta'</p></td>
+    </tr>
+    <tr>
+      <th>norm_method</th>
+      <td><p>can be RAW=0, BMIQ=1, DASEN=2, SWAN=3, SQN=4, RCP=5, NOOB=6, CPACOR=7, FUNNORM=8, OTHER=9 (needs to be a number)</p></td>
+    </tr>
+    <tr>
+      <th>run_mode</th>
+      <td><p>can be NORMAL, NON_INTERACTIVE or TEST</p></td>
     </tr>
     <tr>
       <th>database_name</th>
@@ -196,8 +211,10 @@
   cohort_id <span class='op'>=</span> <span class='st'>'gecko'</span>,
   methyl_data_input_path <span class='op'>=</span> <span class='st'>"~/path-to-file"</span>,
   covariate_data_input_path <span class='op'>=</span> <span class='st'>"~/path-to-file"</span>,
+  dna_source <span class='op'>=</span> <span class='st'>'placenta'</span>,
+  norm_method <span class='op'>=</span> <span class='fl'>0</span>,
   dict_version <span class='op'>=</span> <span class='st'>"2_2"</span>,
-  data_version <span class='op'>=</span> <span class='st'>"1_0"</span>
+  data_version <span class='op'>=</span> <span class='st'>"1"</span>
 <span class='op'>)</span>
 <span class='op'>}</span>
 
