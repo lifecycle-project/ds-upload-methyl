@@ -54,13 +54,13 @@ Upload the data to Armadillo
   
 ```{r, upload the methylclocks, eval=FALSE}
 du.upload.methyl.clocks(
-  dict_name = "methylclocks", 
+  cohort_id = "gecko",
   methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
   covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "1_0",
-  data_version = "1")
+  data_version = "1_0")
 ```
 
 ### Upload to Opal
@@ -91,13 +91,13 @@ Upload the data
 
 ```{r, upload the methylation data, eval=FALSE}  
 du.upload.methyl.clocks(
-  dict_name = "methylclocks",
-  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/MethylationDataExample55.csv?raw=true",
-  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  cohort_id = "gecko",
+  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
+  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "1_0"
-  data_version = "1")
+  data_version = "1_0")
 ```
 
 ## Troubleshooting
@@ -110,10 +110,11 @@ Example:
 
 ```{r, specify whole input paths, eval=FALSE}
 du.upload.methyl.clocks(
-  dict_name = "methylation_clocks", 
+  cohort_id = "gecko",
   methyl_data_input_path = "C:\Users\yourself\raw_clock_data.csv",
   covariate_data_input_path = "C:\Users\yourself\raw_covariate_data.csv",
-  data_version = "1_0")
+  data_version = "1_0",
+  dict_version = "1_0")
 ```
 
 ### Cannot allocate vector of size n Mb ...

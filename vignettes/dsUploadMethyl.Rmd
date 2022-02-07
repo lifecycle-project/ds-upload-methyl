@@ -57,7 +57,7 @@ Upload the data to Armadillo
 
 ```r
 du.upload.methyl.clocks(
-  dict_name = "methylclocks", 
+  cohort_id = "gecko",
   methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
   covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
   dict_version = "1_0",
@@ -96,8 +96,8 @@ Upload the data
 ```r
 du.upload.methyl.clocks(
   dict_name = "methylclocks",
-  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/MethylationDataExample55.csv?raw=true",
-  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/master/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
+  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
   dict_version = "1_0"
   data_version = "1_0")
 ```
@@ -113,10 +113,11 @@ Example:
 
 ```r
 du.upload.methyl.clocks(
-  dict_name = "methylation_clocks", 
+  cohort_id = "gecko",
   methyl_data_input_path = "C:\Users\yourself\raw_clock_data.csv",
   covariate_data_input_path = "C:\Users\yourself\raw_covariate_data.csv",
-  data_version = "1_0")
+  data_version = "1_0",
+  dict_version = "1_0")
 ```
 
 ### Cannot allocate vector of size n Mb ...

@@ -16,7 +16,8 @@ du.upload.methyl.clocks(
   dna_source = du.enum.dna.source()$CORD_BLOOD,
   norm_method = du.enum.norm.method()$RAW,
   run_mode = du.enum.run.mode()$NORMAL,
-  database_name = "opal_data"
+  database_name = "opal_data",
+  override_project = NULL
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ du.upload.methyl.clocks(
 \item{run_mode}{can be NORMAL, NON_INTERACTIVE or TEST}
 
 \item{database_name}{is the name of the data backend of DataSHIELD, default = opal_data}
+
+\item{override_project}{override the generated project name}
 }
 \description{
 Uploading methylation data to the DataSHIELD backends
@@ -57,7 +60,8 @@ du.upload.methyl.clocks(
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "2_2",
-  data_version = "1"
+  data_version = "1",
+  override_project = "custom_project_1_0"
 )
 }
 

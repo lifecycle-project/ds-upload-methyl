@@ -15,6 +15,7 @@ ds_upload.globals <- new.env()
 #' @param norm_method can be RAW=0, BMIQ=1, DASEN=2, SWAN=3, SQN=4, RCP=5, NOOB=6, CPACOR=7, FUNNORM=8, OTHER=9 (needs to be a number)
 #' @param run_mode can be NORMAL, NON_INTERACTIVE or TEST
 #' @param database_name is the name of the data backend of DataSHIELD, default = opal_data
+#' @param override_project override the generated project name
 #'
 #' @importFrom readr read_csv write_csv
 #'
@@ -28,12 +29,13 @@ ds_upload.globals <- new.env()
 #'   dna_source = 'placenta',
 #'   norm_method = 0,
 #'   dict_version = "2_2",
-#'   data_version = "1"
+#'   data_version = "1",
+#'   override_project = "custom_project_1_0"
 #' )
 #' }
 #'
 #' @export
-du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '1_1', data_version = "16", data_format = du.enum.input.format()$CSV, dna_source = du.enum.dna.source()$CORD_BLOOD, norm_method = du.enum.norm.method()$RAW, run_mode = du.enum.run.mode()$NORMAL, database_name = "opal_data") {
+du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.action()$ALL, methyl_data_input_path = "", covariate_data_input_path = "", dict_version = '1_1', data_version = "16", data_format = du.enum.input.format()$CSV, dna_source = du.enum.dna.source()$CORD_BLOOD, norm_method = du.enum.norm.method()$RAW, run_mode = du.enum.run.mode()$NORMAL, database_name = "opal_data", override_project = NULL) {
   du.check.package.version()
   du.check.session(upload)
 
@@ -52,7 +54,7 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
       }
       
       if (action == du.enum.action()$ALL | action == du.enum.action()$POPULATE) {
-        project <- du.populate(dict_version = dict_version, cohort_id = cohort_id, data_version = data_version, database_name, dict_kind = du.enum.dict.kind()$METHYL)
+        project <- du.populate(dict_version = dict_version, cohort_id = cohort_id, data_version = data_version, database_name, dict_kind = du.enum.dict.kind()$METHYL, override_project)
       }
       
       if (action == du.enum.action()$ALL) {
