@@ -115,8 +115,12 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dsUploadMethyl"</span>, repos <span class="op">=</span> <span class="st">"https://registry.molgenis.org/repository/R"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"methylclock"</span>, repos <span class="op">=</span> <span class="st">"https://registry.molgenis.org/repository/R"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p>Login to the Armadillo</p>
+<p>If dependencies do not install automatically please install:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">install.package</span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"minfi"</span>, <span class="st">"preprocessCore"</span>, <span class="st">"BiocStyle"</span>, <span class="st">"Biobase"</span>, <span class="st">"impute"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Login to the Armadillo</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   server <span class="op">=</span> <span class="st">"https://armadillo.test.molgenis.org"</span>, 
   storage <span class="op">=</span> <span class="st">"https://armadillo-minio.test.molgenis.org"</span>, 
@@ -128,7 +132,7 @@
 
 <span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span><span class="va">login_data</span><span class="op">)</span></code></pre></div>
 <p>Upload the data to Armadillo</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/du.upload.methyl.clocks.html">du.upload.methyl.clocks</a></span><span class="op">(</span>
   cohort_id <span class="op">=</span> <span class="st">"gecko"</span>,
   methyl_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv"</span>,
@@ -142,10 +146,10 @@
 <a href="#upload-to-opal" class="anchor"></a>Upload to Opal</h3>
 <p>You can generate the clocks and upload to the Opal using these commands:</p>
 <p>Install the packages</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsUploadMethyl"</span>,<span class="st">"methylclock"</span><span class="op">)</span>, repos <span class="op">=</span> <span class="st">"https://registry.molgenis.org/repository/R"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Login to the Opal server</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   server <span class="op">=</span> <span class="st">"https://opal.edge.molgenis.org"</span>, 
   username <span class="op">=</span> <span class="st">"administrator"</span>, 
@@ -157,7 +161,7 @@
 
 <span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span><span class="va">login_data</span><span class="op">)</span></code></pre></div>
 <p>Upload the data</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/du.upload.methyl.clocks.html">du.upload.methyl.clocks</a></span><span class="op">(</span>
   dict_name <span class="op">=</span> <span class="st">"methylclocks"</span>,
   methyl_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv"</span>,
@@ -177,20 +181,20 @@
 <a href="#files-are-not-loaded" class="anchor"></a>Files are not loaded</h3>
 <p>If the input files are not picked up directly please make sure the whole input path is specified:</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">du.upload.methyl.clocks</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohort_id =</span> <span class="st">"gecko"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">methyl_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_clock_data.csv"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariate_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_covariate_data.csv"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dna_source =</span> <span class="st">'placenta'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">norm_method =</span> <span class="dv">0</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_version =</span> <span class="st">"1_0"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_version =</span> <span class="st">"1_0"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">du.upload.methyl.clocks</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohort_id =</span> <span class="st">"gecko"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">methyl_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_clock_data.csv"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariate_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_covariate_data.csv"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dna_source =</span> <span class="st">'placenta'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">norm_method =</span> <span class="dv">0</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_version =</span> <span class="st">"1_0"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_version =</span> <span class="st">"1_0"</span>)</span></code></pre></div>
 </div>
 <div id="cannot-allocate-vector-of-size-n-mb" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cannot-allocate-vector-of-size-n-mb" class="anchor"></a>Cannot allocate vector of size n Mb …</h3>
 <p>Running the methylation data generation can be memory consuming. You need to allocate enough memory to perform the action. You can exceute</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/memory.size.html">memory.limit</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">2500</span><span class="op">)</span></code></pre></div>
 </div>
 </div>

@@ -30,10 +30,19 @@ You can generate the clocks and upload to the Armadillo using these commands
 
 Install the packages
 
-```{r, install dependencies, eval=FALSE}
+```{r, install relevant packages, eval=FALSE}
 install.packages("dsUploadMethyl", repos = "https://registry.molgenis.org/repository/R", dependencies = TRUE)
 install.packages("methylclock", repos = "https://registry.molgenis.org/repository/R", dependencies = TRUE)
 ```
+
+
+If dependencies do not install automatically please install:
+
+```{r, install dependencies}
+install.package("BiocManager")
+BiocManager::install(c("minfi", "preprocessCore", "BiocStyle", "Biobase", "impute"))
+```
+
 
 Login to the Armadillo
 
