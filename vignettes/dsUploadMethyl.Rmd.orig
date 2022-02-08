@@ -55,8 +55,8 @@ Upload the data to Armadillo
 ```{r, upload the methylclocks, eval=FALSE}
 du.upload.methyl.clocks(
   cohort_id = "gecko",
-  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
-  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  methyl_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv",
+  covariate_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/SampleAnnotationExample55.csv",
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "1_0",
@@ -92,8 +92,8 @@ Upload the data
 ```{r, upload the methylation data, eval=FALSE}  
 du.upload.methyl.clocks(
   cohort_id = "gecko",
-  methyl_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true",
-  covariate_data_input_path = "https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true",
+  methyl_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv",
+  covariate_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/SampleAnnotationExample55.csv",
   dna_source = 'placenta',
   norm_method = 0,
   dict_version = "1_0"
