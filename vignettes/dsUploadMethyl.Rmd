@@ -60,8 +60,9 @@ du.upload.methyl.clocks(
   cohort_id = "gecko",
   methyl_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv",
   covariate_data_input_path = "https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/SampleAnnotationExample55.csv",
-  dict_version = "1_0",
-  data_version = "1_0")
+  dna_source = 'placenta',
+  norm_method = 0,
+  dict_version = "1_0")
 ```
 
 ### Upload to Opal

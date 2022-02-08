@@ -131,10 +131,11 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/du.upload.methyl.clocks.html">du.upload.methyl.clocks</a></span><span class="op">(</span>
   cohort_id <span class="op">=</span> <span class="st">"gecko"</span>,
-  methyl_data_input_path <span class="op">=</span> <span class="st">"https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true"</span>,
-  covariate_data_input_path <span class="op">=</span> <span class="st">"https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true"</span>,
-  dict_version <span class="op">=</span> <span class="st">"1_0"</span>,
-  data_version <span class="op">=</span> <span class="st">"1_0"</span><span class="op">)</span></code></pre></div>
+  methyl_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv"</span>,
+  covariate_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/SampleAnnotationExample55.csv"</span>,
+  dna_source <span class="op">=</span> <span class="st">'placenta'</span>,
+  norm_method <span class="op">=</span> <span class="fl">0</span>,
+  dict_version <span class="op">=</span> <span class="st">"1_0"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="upload-to-opal" class="section level3">
 <h3 class="hasAnchor">
@@ -156,12 +157,15 @@
 
 <span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span><span class="va">login_data</span><span class="op">)</span></code></pre></div>
 <p>Upload the data</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">du.upload.methyl.clocks</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_name =</span> <span class="st">"methylclocks"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">methyl_data_input_path =</span> <span class="st">"https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/MethylationDataExample55.csv?raw=true"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariate_data_input_path =</span> <span class="st">"https://github.com/isglobal-brge/methylclock/raw/v0.7.3/inst/extdata/SampleAnnotationExample55.csv?raw=true"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_version =</span> <span class="st">"1_0"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_version =</span> <span class="st">"1_0"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/du.upload.methyl.clocks.html">du.upload.methyl.clocks</a></span><span class="op">(</span>
+  dict_name <span class="op">=</span> <span class="st">"methylclocks"</span>,
+  methyl_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/MethylationDataExample55.csv"</span>,
+  covariate_data_input_path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lifecycle-project/ds-upload-methyl/master/inst/examples/data/METHYL/SampleAnnotationExample55.csv"</span>,
+  dna_source <span class="op">=</span> <span class="st">'placenta'</span>,
+  norm_method <span class="op">=</span> <span class="fl">0</span>,
+  dict_version <span class="op">=</span> <span class="st">"1_0"</span>,
+  data_version <span class="op">=</span> <span class="st">"1_0"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="troubleshooting" class="section level2">
@@ -177,8 +181,10 @@
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">cohort_id =</span> <span class="st">"gecko"</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">methyl_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_clock_data.csv"</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariate_data_input_path =</span> <span class="st">"C:\Users\yourself</span><span class="sc">\r</span><span class="st">aw_covariate_data.csv"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_version =</span> <span class="st">"1_0"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_version =</span> <span class="st">"1_0"</span>)</span></code></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dna_source =</span> <span class="st">'placenta'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">norm_method =</span> <span class="dv">0</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dict_version =</span> <span class="st">"1_0"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_version =</span> <span class="st">"1_0"</span>)</span></code></pre></div>
 </div>
 <div id="cannot-allocate-vector-of-size-n-mb" class="section level3">
 <h3 class="hasAnchor">
