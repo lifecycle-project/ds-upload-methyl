@@ -89,8 +89,8 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
           if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
             du.login(ds_upload.globals$login_data)
             file_name <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_", dna_source, "_", data_version, "_", dna_source)
-            write_csv(file_name, paste0(getwd(), "/", file_name, ".csv"), na = "")
-            du.opal.upload(du.enum.dict.kind()$METHYL, file_name)
+            write_csv(methyl_data, paste0(getwd(), "/", file_name, ".csv"), na = "")
+            du.opal.upload(du.enum.dict.kind()$METHYL, paste0(getwd(), "/", file_name, ".csv"))
           } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
             du.armadillo.import(project = project, data = methyl_data, dict_version = dict_version, data_version = data_version, dna_source = dna_source)
           }
@@ -128,8 +128,8 @@ du.generate.methyl.data <- function(data_format, methyl_data_input_path, covaria
       methyl_data <- read_csv(url(methyl_data_input_path))
       covariate_data <- read_csv(url(covariate_data_input_path))
     } else {
-      methyl_data <- read_csv(methyl_data_input_path)
-      covariate_data <- read_csv(covariate_data_input_path)
+      methyl_data <- source(methyl_data_input_path)
+      covariate_data <- source(covariate_data_input_path)
     }
   } else {
     methyl_data <- load(methyl_data_input_path)
