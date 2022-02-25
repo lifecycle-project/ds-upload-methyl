@@ -60,7 +60,7 @@ du.opal.data.import <- function(project, dict_kind, file_name) {
   project <- readline(paste0("Which project you want to upload into: [ ", paste0(projects$name, collapse = ", "), " ]: "))
 
   if (!(project %in% projects$name)) {
-    stop(paste("Invalid projectname: [ ", project, " ]", sep = ""))
+    stop(paste0("Invalid projectname: [ ", project, " ]"))
   }
 
   tables <- opal.tables(ds_upload.globals$conn, project)
@@ -96,10 +96,10 @@ du.opal.project.create <- function(project, database_name) {
   requireNamespace("opalr")
   canonical_project_name <- strsplit(project, "_")
   dict_kind <- canonical_project_name[[1]][3]
-  dict_version <- paste0(canonical_project_name[[1]][3], "_rep")
+  dict_version <- paste0(canonical_project_name[[1]][3])
 
   message("------------------------------------------------------")
-  message(paste("  Start creating project: [ ", project, " ]", sep = ""))
+  message(paste0("  Start creating project: [ ", project, " ]"))
 
   projects <- opal.projects(ds_upload.globals$conn)
 
@@ -113,7 +113,7 @@ du.opal.project.create <- function(project, database_name) {
     )
     opal.post(ds_upload.globals$conn, "projects", body = json, contentType = "application/x-protobuf+json")
   } else {
-    message(paste("* Project: [ ", project, " ] already exists", sep = ""))
+    message(paste0("* Project: [ ", project, " ] already exists"))
   }
 }
 
@@ -137,14 +137,14 @@ du.opal.dict.import <- function(project, dictionaries, dict_kind) {
       json_table <- sprintf("{\"entityType\":\"Participant\",\"name\":\"%s\"}", dict$table)
       tables <- opal.tables(ds_upload.globals$conn, project)
       if (!(dict$table %in% tables$name)) {
-        message(paste("* Create table: [ ", dict$table, " ]", sep = ""))
+        message(paste0("* Create table: [ ", dict$table, " ]"))
         url <- paste0("datasource/", project, "/tables")
         opal.post(ds_upload.globals$conn, url,
           body = json_table,
           contentType = "application/x-protobuf+json"
         )
       } else {
-        message(paste("* Table: [ ", dict$table, " ] already exists", sep = ""))
+        message(paste0("* Table: [ ", dict$table, " ] already exists"))
       }
 
       du.opal.dict.match.categories(project, dict_kind, dict$table, dict$file_name)
@@ -181,7 +181,7 @@ du.opal.dict.match.categories <- function(project, dict_kind, table, file_name) 
   variables <- select(variables, -c(label))
 
   if (nrow(categories) > 0) {
-    message(paste("* Matched categories for table: [ ", table, " ]", sep = ""))
+    message(paste0("* Matched categories for table: [ ", table, " ]"))
     categories <- transform(categories, name = as.character(name))
     categories$attributes <- data.frame(
       namespace = "", name = "label", locale = "",
@@ -191,7 +191,7 @@ du.opal.dict.match.categories <- function(project, dict_kind, table, file_name) 
     variables <- variables %>% nest_join(categories, by = c(name = "variable"))
   }
 
-  message(paste("* Import variables into: [ ", table, " ]", sep = ""))
+  message(paste0("* Import variables into: [ ", table, " ]"))
 
   url <- paste0("datasource/", project, "/table/", table, "/variables")
   opal.post(ds_upload.globals$conn, url,
