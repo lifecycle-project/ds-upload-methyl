@@ -125,8 +125,8 @@ du.generate.methyl.data <- function(data_format, methyl_data_input_path, covaria
   
   if(data_format == du.enum.input.format()$CSV) {
     if(file.exists(methyl_data_input_path) & file.exists(covariate_data_input_path)) {
-      methyl_data <- read_csv(url(methyl_data_input_path))
-      covariate_data <- read_csv(url(covariate_data_input_path))
+      methyl_data <- read_csv(methyl_data_input_path)
+      covariate_data <- read_csv(covariate_data_input_path)
     } else {
       methyl_data <- source(methyl_data_input_path)
       covariate_data <- source(covariate_data_input_path)
