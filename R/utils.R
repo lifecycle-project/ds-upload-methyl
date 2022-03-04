@@ -77,7 +77,7 @@ du.get.response.as.dataframe <- local(function(url) {
 #' @noRd
 du.check.action <- function(action = "all") {
   if (!(action %in% du.enum.action())) {
-    stop("Unknown action type, please fill in 'populate', 'reshape' or 'all'")
+    stop("Unknown action type, please fill in 'populate', 'methyl' or 'all'")
   }
 }
 

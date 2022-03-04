@@ -114,7 +114,7 @@ du.populate.dict.versions <- local(function(dict_kind, dict_version) {
 #' @return a raw version of the dictionary
 #'
 #' @noRd
-du.retrieve.dictionaries <- local(function(dict_table, dict_kind) {
+du.retrieve.dictionaries <- function(dict_table, dict_kind) {
   dict_file_list <- list.files(paste0(getwd(), "/", dict_kind))
 
   if (!missing(dict_table)) {
@@ -126,7 +126,7 @@ du.retrieve.dictionaries <- local(function(dict_table, dict_kind) {
     raw_dict <- rbind(raw_dict, read_xlsx(path = paste0(dict_kind, "/", file_name), sheet = 1))
   }
   return(as.data.frame(raw_dict))
-})
+}
 
 #' Get the full dictionary with mapped categories
 #' 

@@ -5,7 +5,7 @@ ds_upload.globals <- new.env()
 #'
 #' @param upload do we need to upload the DataSHIELD backend
 #' @param cohort_id cohort name from the dictonary
-#' @param action action to be performed, can be 'populate' or 'all'
+#' @param action action to be performed, can be 'populate', 'methyl' or 'all'
 #' @param methyl_data_input_path path to the methylation data
 #' @param covariate_data_input_path path to the covariate data to measure the age
 #' @param dict_version version of the dictionary
@@ -47,7 +47,9 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
     {
       workdirs <- du.create.temp.workdir()
       du.check.action(action)
-      du.dict.download(dict_version = dict_version, dict_kind = du.enum.dict.kind()$METHYL)
+      if(action == du.enum.action()$ALL | action == du.enum.action()$POPULATE) {
+        du.dict.download(dict_version = dict_version, dict_kind = du.enum.dict.kind()$METHYL)
+      }
 
       if (data_version == "" || !du.check.version(data_version)) {
         stop("No data version is specified or the data version does not match syntax: 'number*'! Program is terminated.")
@@ -57,7 +59,7 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         project <- du.populate(dict_version = dict_version, cohort_id = cohort_id, data_version = data_version, database_name, dict_kind = du.enum.dict.kind()$METHYL, override_project)
       }
       
-      if (action == du.enum.action()$ALL) {
+      if (action == du.enum.action()$ALL | action == du.enum.action()$METHYL) {
         if (missing(methyl_data_input_path)) {
           input_path <- readline("- Specify input path (for your methylation data): ")
         } else if (missing(methyl_data_input_path)) {
@@ -85,12 +87,12 @@ du.upload.methyl.clocks <- function(upload = TRUE, cohort_id, action = du.enum.a
         data_input_format <- data_format
 
         methyl_data <- du.generate.methyl.data(data_format, methyl_data_input_path, covariate_data_input_path, dna_source = dna_source, norm_method = norm_method)
+        file_name <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_", dna_source, "_", data_version, "_", dna_source, ".csv")
+        write_csv(methyl_data, paste0(getwd(), "/", file_name), na = "")
         if (upload) {
           if (ds_upload.globals$login_data$driver == du.enum.backends()$OPAL) {
             du.login(ds_upload.globals$login_data)
-            file_name <- paste0(format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), "_", "methyl_", dna_source, "_", data_version, "_", dna_source)
-            write_csv(methyl_data, paste0(getwd(), "/", file_name, ".csv"), na = "")
-            du.opal.upload(du.enum.dict.kind()$METHYL, paste0(getwd(), "/", file_name, ".csv"))
+            du.opal.upload(du.enum.dict.kind()$METHYL, paste0(getwd(), "/", file_name))
           } else if (ds_upload.globals$login_data$driver == du.enum.backends()$ARMADILLO) {
             du.armadillo.import(project = project, data = methyl_data, dict_version = dict_version, data_version = data_version, dna_source = dna_source)
           }
