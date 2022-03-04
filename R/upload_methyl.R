@@ -124,7 +124,7 @@ du.generate.methyl.data <- function(data_format, methyl_data_input_path, covaria
   requireNamespace("methylclock")
   
   if(data_format == du.enum.input.format()$CSV) {
-    if(url.exists(methyl_data_input_path) & url.exists(covariate_data_input_path)) {
+    if(file.exists(methyl_data_input_path) & file.exists(covariate_data_input_path)) {
       methyl_data <- read_csv(url(methyl_data_input_path))
       covariate_data <- read_csv(url(covariate_data_input_path))
     } else {
