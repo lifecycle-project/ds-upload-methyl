@@ -74,7 +74,7 @@ du.dict.retrieve.tables <- function(api_url, dict_name, dict_version, data_versi
     pmap(function(name) {
       if (!beta) {
         canonical_table_name <- strsplit(name, "_")
-        table <- paste0(data_version, "_", canonical_table_name[[1]][3], "_rep")
+        table <- paste0(data_version, "_", canonical_table_name[1][3])
       } else {
         table <- paste0(data_version, "_", path_ext_remove(name))
       }

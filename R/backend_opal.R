@@ -26,14 +26,14 @@ du.opal.upload <- function(dict_kind, file_name) {
   requireNamespace("opalr")
   upload_directory <- paste0("/home/", ds_upload.globals$login_data$username)
 
-  message(paste0("* Upload: [ ", file_name, ".csv ] to directory [ ", dict_kind, " ]"))
+  message(paste0("* Upload: [ ", file_name, " ] to directory [ ", dict_kind, " ]"))
   dirs <- opal.file_ls(ds_upload.globals$conn, upload_directory)
   if (!(dict_kind %in% dirs$name)) {
     opal.file_mkdir(ds_upload.globals$conn, paste0(upload_directory, "/", dict_kind))
   }
-  opal.file_upload(ds_upload.globals$conn, source = paste0(getwd(), "/", file_name, ".csv"), destination = paste0(upload_directory, "/", dict_kind))
+  opal.file_upload(ds_upload.globals$conn, source = file_name, destination = paste0(upload_directory, "/", dict_kind))
 
-  unlink(paste0(getwd(), "/", file_name, ".csv"))
+  unlink(paste0(getwd(), "/", file_name))
 }
 
 #' Importing generated data files
@@ -53,8 +53,6 @@ du.opal.data.import <- function(project, dict_kind, file_name) {
   requireNamespace("opalr")
   message("------------------------------------------------------")
   message("  Start importing data files")
-
-  file_ext <- ".csv"
 
   projects <- opal.projects(ds_upload.globals$conn)
   project <- readline(paste0("Which project you want to upload into: [ ", paste0(projects$name, collapse = ", "), " ]: "))

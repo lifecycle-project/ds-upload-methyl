@@ -25,7 +25,7 @@ du.upload.methyl.clocks(
 
 \item{cohort_id}{cohort name from the dictonary}
 
-\item{action}{action to be performed, can be 'populate' or 'all'}
+\item{action}{action to be performed, can be 'populate', 'methyl' or 'all'}
 
 \item{methyl_data_input_path}{path to the methylation data}
 
