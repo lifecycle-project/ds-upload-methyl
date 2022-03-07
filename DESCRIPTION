@@ -1,6 +1,6 @@
 Package: dsUploadMethyl
 Title: Upload Functions for DataSHIELD to work with methylation data
-Version: 1.2.9
+Version: 1.2.10
 Authors@R: 
   c(person(given = "Sido",
       family = "Haakma",
